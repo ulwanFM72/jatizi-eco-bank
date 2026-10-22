@@ -1,59 +1,100 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# JATIZI ECO-BANK
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi web bank sampah **SMK Negeri 1 Cijati** untuk mencatat setoran sampah dari siswa, guru, dan tenaga administrasi, serta memantau jumlah sampah yang terkumpul dan dikelola oleh Bank Sampah SMKN 1 Cijati.
 
-## About Laravel
+Aplikasi ini bertujuan mengubah pencatatan manual menjadi sistem digital yang lebih tertib, transparan, akurat, dan mudah dievaluasi.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Dashboard**: ringkasan total sampah, total poin, jumlah transaksi, dan peringkat kelas.
+- **Pencatatan setoran**: nama penyetor, kelas, jenis sampah, berat (gram atau kilogram), tanggal, dan petugas penerima.
+- **Perhitungan poin otomatis**: setiap akumulasi 1.000 gram setara 5 poin. Sisa berat di bawah 1.000 gram tetap disimpan dan digabungkan dengan setoran berikutnya.
+- **Riwayat transaksi**: pencarian dan penyaringan berdasarkan tanggal atau kelas, beserta detail dan status pencatatan.
+- **Peringkat kelas**: diperbarui otomatis setelah setoran dicatat.
+- **Laporan**: rekap berat dan poin berdasarkan rentang tanggal atau kelas, dapat dicetak atau diunduh dalam format PDF.
+- **Pengelolaan admin**: kelas, jenis sampah, setoran, pengguna, dan aturan konversi poin.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Kategori sampah yang dikelola: **organik**, **an-organik**, dan **B3**.
 
-## Learning Laravel
+## Hak Akses Pengguna
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| Peran | Hak akses |
+|---|---|
+| Admin | Mengelola seluruh data master, pengguna, aturan poin, setoran (termasuk koreksi dan penghapusan), serta laporan |
+| Petugas bank sampah | Mencatat setoran dan melihat riwayat |
+| Siswa, guru, dan tenaga administrasi | Melihat riwayat setoran pribadi, akumulasi sampah, nilai setoran, dan peringkat kepedulian |
+| Pengunjung umum | Melihat beranda, peringkat kelas, dan riwayat setoran dengan nama penyetor disamarkan |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Teknologi
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- Laravel (versi terbaru) dan Inertia.js
+- Vue.js 3
+- Tailwind CSS
+- MySQL
+- DomPDF untuk pembuatan laporan PDF
 
-## Agentic Development
+## Prasyarat
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- PHP 8.2 atau lebih baru
+- Composer
+- Node.js 20 atau lebih baru
+- MySQL
+
+## Instalasi
 
 ```bash
-composer require laravel/boost --dev
+git clone <URL-REPOSITORI>
+cd <NAMA-FOLDER>
 
-php artisan boost:install
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Buat basis data MySQL dengan nama `jatizi_eco_bank`, kemudian sesuaikan pengaturan berikut pada berkas `.env`:
 
-## Contributing
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=jatizi_eco_bank
+DB_USERNAME=root
+DB_PASSWORD=
+APP_TIMEZONE=Asia/Jakarta
+APP_LOCALE=id
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Jalankan migrasi dan aplikasi:
 
-## Code of Conduct
+```bash
+php artisan migrate --seed
+npm run build
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Aplikasi dapat diakses melalui `http://127.0.0.1:8000`.
 
-## Security Vulnerabilities
+## Akun Awal
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Seeder membuat satu akun admin dengan nama pengguna `admin`. Kata sandi awal dapat ditentukan melalui variabel `SEED_ADMIN_PASSWORD` pada berkas `.env` sebelum menjalankan seeder. **Harap segera mengganti kata sandi bawaan setelah masuk untuk pertama kali.**
 
-## License
+## Pengujian
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# jatizi-eco-bank
+```bash
+php artisan test
+```
+
+## Aturan Perhitungan Poin
+
+Perhitungan poin dilakukan sepenuhnya di sisi server (backend Laravel) sehingga hasilnya tidak dapat dimanipulasi melalui peramban. Setiap perubahan, koreksi, atau penghapusan setoran dihitung ulang secara konsisten agar poin tidak terhitung dua kali. Perubahan aturan konversi hanya berlaku untuk setoran yang dicatat setelah perubahan tersebut.
+
+## Keamanan
+
+- Jangan mengunggah berkas `.env` ke repositori.
+- Gunakan kata sandi yang kuat untuk seluruh akun pengelola.
+- Apabila menemukan celah keamanan, mohon laporkan langsung kepada pengelola aplikasi.
+
+## Pengelola
+
+Bank Sampah SMK Negeri 1 Cijati.
