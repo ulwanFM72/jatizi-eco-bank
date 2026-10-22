@@ -1,0 +1,53 @@
+<?php
+
+return [
+    'alpha_dash' => ':attribute hanya boleh berisi huruf, angka, strip, dan garis bawah.',
+    'after_or_equal' => ':attribute harus berupa tanggal setelah atau sama dengan :date.',
+    'before_or_equal' => ':attribute tidak boleh melebihi :date.',
+    'boolean' => ':attribute harus bernilai benar atau salah.',
+    'date' => ':attribute bukan tanggal yang valid.',
+    'email' => ':attribute harus berupa alamat email yang valid.',
+    'exists' => ':attribute yang dipilih tidak valid.',
+    'in' => ':attribute yang dipilih tidak valid.',
+    'integer' => ':attribute harus berupa bilangan bulat.',
+    'max' => [
+        'numeric' => ':attribute tidak boleh lebih dari :max.',
+        'string' => ':attribute tidak boleh lebih dari :max karakter.',
+        'array' => ':attribute tidak boleh lebih dari :max item.',
+        'file' => ':attribute tidak boleh lebih dari :max kilobita.',
+    ],
+    'min' => [
+        'numeric' => ':attribute tidak boleh kurang dari :min.',
+        'string' => ':attribute minimal :min karakter.',
+        'array' => ':attribute minimal :min item.',
+        'file' => ':attribute minimal :min kilobita.',
+    ],
+    'numeric' => ':attribute harus berupa angka.',
+    'regex' => 'Format :attribute tidak valid.',
+    'required' => ':attribute wajib diisi.',
+    'required_if' => ':attribute wajib diisi bila :other bernilai :value.',
+    'required_without' => ':attribute wajib diisi bila :values tidak diisi.',
+    'string' => ':attribute harus berupa teks.',
+    'unique' => ':attribute sudah digunakan.',
+    'uuid' => ':attribute harus berupa UUID yang valid.',
+
+    'custom' => [],
+
+    'attributes' => [
+        'name' => 'Nama',
+        'username' => 'Username',
+        'email' => 'Email',
+        'password' => 'Kata sandi',
+        'role' => 'Peran',
+        'nomor_induk' => 'Nomor induk',
+        'kelas_id' => 'Kelas',
+        'nama' => 'Nama',
+        'tipe' => 'Tipe',
+        'kategori' => 'Kategori',
+        'keterangan' => 'Keterangan',
+        'gram_per_unit' => 'Jumlah gram per unit',
+        'poin_per_unit' => 'Poin per unit',
+        'dari' => 'Tanggal awal',
+        'sampai' => 'Tanggal akhir',
+    ],
+];
